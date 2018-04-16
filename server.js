@@ -8,7 +8,7 @@ const mongoose = require('mongoose');
 
 const app = express();
 
-//connect to db here
+mongoose.connect('mongodb://localhost/capstone-db');
 
 require('./seeds')()
 

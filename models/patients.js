@@ -8,5 +8,7 @@ const patientSchema = Schema({
   weightInPounds: Number,
   eyeColor: String,
   hairColor: String,
-  metaData: //???
+  metaData: [{type: Schema.Types.ObjectId, ref: 'testResults'}]
 });
+
+module.exports = mongoose.model('Patients', patientSchema);
