@@ -5,6 +5,7 @@ const knex = require('../db/knex');
 router.get('/', function(req, res, next) {
   knex('patients')
     .select()
+    .where("doctor_id", req.decoded.doctor.id)
     .orderBy('id', 'asc')
     .then(patients => res.json(patients))
 });

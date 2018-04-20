@@ -26,6 +26,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/', index);
 app.use('/doctors', doctors);
 app.use(jwtUserAuth);
+app.get("/check", (req, res)=>{
+  res.json({doctor: req.decoded.doctor});
+})
 app.use('/patients', patients);
 app.use('/testRanges', testRanges);
 app.use('/testResults', testResults);

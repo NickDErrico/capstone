@@ -17,11 +17,8 @@ router.post("/login", function(req, res) {
       res.sendStatus(400);
     }
     if (doctor.password === req.body.password) {
-      knex('patients')
-        .where('doctor_id', doctor.id)
-        .then((patients) => {
-          res.json({doctor: doctor, patients: patients, token: jwt.sign({doctor}, jwtSecret)});
-        })
+      delete doctor.password;
+      res.json({doctor: doctor, token: jwt.sign({doctor}, jwtSecret)});
     } else {
       res.sendStatus(400);
     }
@@ -34,8 +31,10 @@ router.post("/register", function(req, res) {
       last_name: req.body.last_name,
       email: req.body.email,
       password: req.body.password
-    })
-    .then(() => {
+    }, "*")
+    .then((doctor) => {
+      doctor = doctor[0];
+      delete doctor.password;
       res.json({doctor: doctor, token: jwt.sign({doctor}, jwtSecret)});
     })
 })
