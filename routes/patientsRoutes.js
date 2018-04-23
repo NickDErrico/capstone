@@ -6,11 +6,11 @@ router.get('/', function(req, res, next) {
   knex('patients')
     .select()
     .where("doctor_id", req.decoded.doctor.id)
-    .orderBy('id', 'asc')
+    .orderBy('last_name', 'asc')
     .then(patients => res.json(patients))
 });
 
-router.get('/single/:id', function(req, res) {
+router.get('/:id', function(req, res) {
   knex('patients')
     .select()
     .where('id', req.params.id)

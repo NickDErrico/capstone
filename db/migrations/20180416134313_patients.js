@@ -11,7 +11,6 @@ exports.up = function(knex, Promise) {
     table.string('eye_color');
     table.string('hair_color');
     table.string('sex');
-    table.timestamps(true, true);
   })
 };
 

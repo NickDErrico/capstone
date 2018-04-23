@@ -30,8 +30,8 @@ app.get("/check", (req, res)=>{
   res.json({doctor: req.decoded.doctor});
 })
 app.use('/patients', patients);
-app.use('/testRanges', testRanges);
-app.use('/testResults', testResults);
+app.use('/ranges', testRanges);
+app.use('/results', testResults);
 
 app.listen(port, function() {
   console.log("listening on port: ", port);

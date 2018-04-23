@@ -39,11 +39,4 @@ router.post("/register", function(req, res) {
     })
 })
 
-router.get("/profile", function(req, res) {
-  knex('testResults')
-  .where('patient_id', data.data.patients.id)
-  .then((testResult) => {
-    res.json(testResult)
-  })
-})
 module.exports = router;

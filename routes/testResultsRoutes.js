@@ -3,32 +3,43 @@ const router = express.Router();
 const knex = require('../db/knex');
 
 router.get('/', function(req, res, next) {
-  knex('testResults')
+  knex('results')
     .select()
-    .orderBy('id', 'asc')
-    .then(testResults => res.json(testResults))
+    .join('ranges', 'results.ranges_id', 'ranges.id')
+    .join('patients', 'results.patient_id', 'patients.id')
+    .where("results.doctor_id", req.decoded.doctor.id)
+    .orderBy('date', 'desc')
+    .then(results => res.json(results))
 });
 
-router.get('/single/:id', function(req, res) {
-  knex('testResults')
+router.get('/:id', function(req, res, next) {
+  knex('results')
     .select()
-    .where('id', req.params.id)
-    .then(testResults => res.json(testResults[0]))
+    .join('ranges', 'results.ranges_id', 'ranges.id')
+    .join('patients', 'results.patient_id', 'patients.id')
+    .where(
+      {
+        "results.doctor_id": req.decoded.doctor.id,
+        "results.patient_id": req.params.id
+      }
+    )
+    .orderBy('date', 'desc')
+    .then(results => res.json(results))
 });
 
 router.patch('/:id', function(req, res) {
-  knex('testResults')
+  knex('results')
     .update(req.body)
     .where('id', req.params.id)
     .returning('*')
-    .then(updatedTestResults => res.json(updatedTestResults))
+    .then(updatedResults => res.json(updatedResults))
 });
 
 router.delete('/:id', function(req, res) {
-  knex('testResults')
+  knex('results')
     .del()
     .where('id', req.params.id)
-    .then(removedTestResults => removedTestResults)
+    .then(removedResults => removedResults)
 });
 
 module.exports = router
