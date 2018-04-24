@@ -4,10 +4,10 @@ const knex = require('../db/knex');
 
 router.get('/', function(req, res, next) {
   knex('results')
-    .select()
+    .select("ranges.*", "patients.*", "results.*")
     .join('ranges', 'results.ranges_id', 'ranges.id')
     .join('patients', 'results.patient_id', 'patients.id')
-    .where("results.doctor_id", req.decoded.doctor.id)
+    .where("results.doctor_id", 1)
     .orderBy('date', 'desc')
     .then(results => res.json(results))
 });

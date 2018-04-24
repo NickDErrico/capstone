@@ -15,7 +15,8 @@ exports.seed = function(knex, Promise) {
           weight: 185,
           eye_color: "Brown",
           hair_color: "Black",
-          sex: "male"
+          sex: "male",
+          age: 20
         },
         {
           doctor_id: 1,
@@ -27,7 +28,8 @@ exports.seed = function(knex, Promise) {
           weight: 207,
           eye_color: "Brown",
           hair_color: "Blonde",
-          sex: "female"
+          sex: "female",
+          age: 42
         },
         {
           doctor_id: 1,
@@ -39,7 +41,8 @@ exports.seed = function(knex, Promise) {
           weight: 275,
           eye_color: "Brown",
           hair_color: "Brown",
-          sex: "male"
+          sex: "male",
+          age: 47
         },
         {
           doctor_id: 2,
@@ -51,7 +54,8 @@ exports.seed = function(knex, Promise) {
           weight: 92,
           eye_color: "blue",
           hair_color: "Brown",
-          sex: "male"
+          sex: "male",
+          age: 36
         },
         {
           doctor_id: 2,
@@ -63,7 +67,8 @@ exports.seed = function(knex, Promise) {
           weight: 85,
           eye_color: "blue",
           hair_color: "Brown",
-          sex: "female"
+          sex: "female",
+          age: 14
         }
       ]);
     });

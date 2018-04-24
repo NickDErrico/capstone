@@ -5,7 +5,7 @@ exports.up = function(knex, Promise) {
     table.integer('doctor_id').references('id').inTable('doctors');
     table.integer('ranges_id').references('id').inTable('ranges');
     table.float('results');
-    table.string('date').notNullable();
+    table.dateTime('date').notNullable();
   })
 };
 
