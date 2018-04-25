@@ -9,7 +9,9 @@ router.get('/', function(req, res, next) {
     .join('patients', 'results.patient_id', 'patients.id')
     .where("results.doctor_id", 1)
     .orderBy('date', 'desc')
-    .then(results => res.json(results))
+    .then(results => {
+      res.json(results)
+    })
 });
 
 router.get('/:id', function(req, res, next) {

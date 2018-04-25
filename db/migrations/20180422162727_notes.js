@@ -4,6 +4,7 @@ exports.up = function(knex, Promise) {
     table.integer('doctor_id').references('id').inTable('doctors');
     table.integer('patient_id');
     table.text('detail');
+    table.dateTime('date').notNullable();
   })
 };
 

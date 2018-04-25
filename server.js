@@ -10,6 +10,7 @@ const doctors = require('./routes/doctorsRoutes');
 const patients = require('./routes/patientsRoutes');
 const testRanges = require('./routes/testRangesRoutes');
 const testResults = require('./routes/testResultsRoutes');
+const notes = require('./routes/notesRoutes');
 const jwt = require("jsonwebtoken");
 const jwtSecret = "nicknick";
 const app = express();
@@ -32,6 +33,7 @@ app.get("/check", (req, res)=>{
 app.use('/patients', patients);
 app.use('/ranges', testRanges);
 app.use('/results', testResults);
+app.use('/notes', notes);
 
 app.listen(port, function() {
   console.log("listening on port: ", port);
