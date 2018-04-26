@@ -6,14 +6,14 @@ router.get('/', function(req, res, next) {
   knex('ranges')
     .select()
     .orderBy('id', 'asc')
-    .then(ranges => res.send(ranges))
+    .then(results => res.send(results))
 });
 
-router.get('/single/:id', function(req, res) {
+router.get('/:id', function(req, res) {
   knex('ranges')
     .select()
     .where('id', req.params.id)
-    .then(ranges => res.json(ranges[0]))
+    .then(results => res.json(results[0]))
 });
 
 router.patch('/:id', function(req, res) {

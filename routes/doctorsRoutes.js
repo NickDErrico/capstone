@@ -7,14 +7,14 @@ router.get('/', function(req, res, next) {
   knex('doctors')
     .select()
     .orderBy('id', 'asc')
-    .then(doctors => res.json(doctors))
+    .then(results => res.json(results))
 });
 
 router.get('/:id', function(req, res) {
   knex('doctors')
     .select()
     .where('id', req.params.id)
-    .then(doctor => res.json(doctor))
+    .then(results => res.json(results))
 });
 
 router.post('/', function(req, res) {
