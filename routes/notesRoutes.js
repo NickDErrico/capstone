@@ -22,11 +22,11 @@ router.post("/", function(req, res) {
     knex('notes').insert({
       date: req.body.payload.date,
       detail: req.body.payload.detail,
-      doctor_id: req.body.payload.doctor_id,
+      doctor_id: req.decoded.doctor.id,
       patient_id: req.body.payload.patient_id,
     }, "*")
     .then((newNote) => {
-      res.json(newNote);
+      res.json(newNote[0]);
     })
 });
 
@@ -38,10 +38,10 @@ router.patch('/:id', function(req, res) {
     .then(updatedNote => res.json(updatedNote))
 });
 
-router.delete('/:id', function(req, res) {
+router.delete('/', function(req, res) {
   knex('notes')
     .del()
-    .where({'id': req.body.payload.id, 'notes.doctor_id': req.body.payload.doctor_id})
+    .where({'id': req.body.payload.id, 'notes.doctor_id': req.decoded.doctor.id})
     .then(removedNote => removedNote)
 });
 

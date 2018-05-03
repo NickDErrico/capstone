@@ -27,13 +27,13 @@ router.get('/:id', function(req, res, next) {
 router.post("/", function(req, res) {
     knex('results').insert({
       patient_id: req.body.payload.patient_id,
-      doctor_id: req.body.payload.doctor_id,
+      doctor_id: req.decoded.doctor.id,
       ranges_id: req.body.payload.ranges_id,
-      date: req.body.payload.date,
       results: req.body.payload.results,
+      date: req.body.payload.date,
     }, "*")
     .then((newTestResults) => {
-      res.json(newTestResults);
+      res.json(newTestResults[0]);
     })
 });
 

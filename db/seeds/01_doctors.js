@@ -9,13 +9,15 @@ exports.seed = function(knex, Promise) {
           first_name: "Maester",
           last_name: "Luwin",
           email: "luwin@maester.com",
-          password: "a"
+          password: "a",
+          pin: "12345"
       },
         {
           first_name: "Grand Maester",
           last_name: "Pycelle",
           email: "pycelle@maester.com",
-          password: "b"
+          password: "b",
+          pin: "56789"
         },
       ]);
     });

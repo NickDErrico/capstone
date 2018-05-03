@@ -26,13 +26,13 @@ router.post("/", function(req, res) {
       age: req.body.payload.age,
       height: req.body.payload.height,
       weight: req.body.payload.weight,
-      doctor_id: req.body.payload.doctor_id,
+      doctor_id: req.decoded.doctor.id,
       eye_color: req.body.payload.eye_color,
       hair_color: req.body.payload.hair_color,
       sex: req.body.payload.sex
     }, "*")
     .then((newPatient) => {
-      res.json(newPatient);
+      res.json(newPatient[0]);
     })
 });
 
