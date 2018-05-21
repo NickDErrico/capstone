@@ -41,8 +41,9 @@ router.patch('/:id', function(req, res) {
 router.delete('/:id', function(req, res) {
   knex('notes')
     .del()
-    .where({'id': req.body.payload.id, 'notes.doctor_id': req.body.payload.doctor_id})
-    .then(removedNote => removedNote)
+    .where('id', req.params.id)
+    .returning('*')
+    .then(removedNote => res.json(removedNote))
 });
 
 module.exports = router

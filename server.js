@@ -27,7 +27,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/', index);
 app.use('/doctors', doctors);
 app.use(jwtUserAuth);
-app.get("/check", (req, res) => { 
+app.get("/check", (req, res) => {
   res.json({doctor: req.decoded.doctor});
 })
 app.use('/patients', patients);
@@ -61,7 +61,7 @@ function jwtUserAuth(req, res, next){
        });
 
    } else {
-
+    console.log('we can see youuuuuu')
        // if there is no token
        // return an error
        return res.status(403).send({

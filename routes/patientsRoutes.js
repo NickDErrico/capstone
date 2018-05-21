@@ -48,7 +48,8 @@ router.delete('/:id', function(req, res) {
   knex('patients')
     .del()
     .where('id', req.params.id)
-    .then(removedPatient => removedPatient)
+    .returning('*')
+    .then(removedPatient => res.json(removedPatient))
 });
 
 module.exports = router

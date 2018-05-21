@@ -32,9 +32,7 @@ router.post("/", function(req, res) {
       date: req.body.payload.date,
       results: req.body.payload.results,
     }, "*")
-    .then((newTestResults) => {
-      res.json(newTestResults);
-    })
+    .then(newTestResults => res.json(newTestResults))
 });
 
 router.patch('/:id', function(req, res) {
@@ -48,8 +46,9 @@ router.patch('/:id', function(req, res) {
 router.delete('/:id', function(req, res) {
   knex('results')
     .del()
-    .where({'id': req.params.id, 'results.doctor_id': req.params.doctor_id})
-    .then(removedResults => removedResults)
+    .where('id', req.params.id)
+    .returning('*')
+    .then(removedResult => res.json(removedResult))
 });
 
 module.exports = router
